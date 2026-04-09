@@ -1,73 +1,65 @@
-# React + TypeScript + Vite
+# At-Work Test
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Тестовое задание для позиции Middle Frontend Developer**
 
-Currently, two official plugins are available:
+Двухстраничное React-приложение для управления пользователями с возможностью редактирования, архивации и скрытия карточек.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+##  Демо
 
-## React Compiler
+[Ссылка на деплой](#) <!-- Добавьте ссылку на ваш деплой -->
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+##  Функционал
 
-## Expanding the ESLint configuration
+### Главная страница
+- Отображение списка пользователей (первые 6 из API)
+- Карточка содержит: Username, City, Company name, аватар
+- Действия с карточкой через выпадающее меню:
+  - **Редактировать** — переход на страницу изменения данных
+  - **Архивировать** — перемещение в секцию "Архив"
+  - **Скрыть** — удаление из списка
+- Возможность восстановления из архива
+- Адаптивная верстка (desktop → 3 колонки, mobile → 2 колонки)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Страница редактирования
+- Форма с полями: Name, Username, Email, City, Phone, Company Name
+- Валидация всех полей (Zod)
+- Сохранение изменений с попапом-уведомлением
+- Адаптивная верстка (desktop → сайдбар + форма, mobile → вертикальная структура)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+##  Важное примечание
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+**API-сервер** (`jsonplaceholder.typicode.com`) **не возвращает ответ для российских IP-адресов**.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Если карточки не загружаются — включите **VPN** и обновите страницу.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+##  Технологии
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+| Технология | Назначение |
+|------------|------------|
+| React 18 + TypeScript | UI и типизация |
+| Vite | Сборка проекта |
+| Zustand | Управление состоянием |
+| React Hook Form + Zod | Формы и валидация |
+| TanStack Query | Работа с API |
+| React Router v7 | Маршрутизация |
+| SCSS Modules | Стилизация |
+| Figma | Дизайн-макет |
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+##  Установка и запуск
+
+```bash
+# Клонирование репозитория
+git clone <repository-url>
+cd at-work-test
+
+# Установка зависимостей
+npm install
+
+# Запуск в режиме разработки
+npm run dev
+
+# Сборка проекта
+npm run build
+
+# Предпросмотр собранного проекта
+npm run preview
