@@ -1,4 +1,4 @@
-
+// src/shared/ui/TextField/TextField.tsx
 import './TextField.scss';
 import { useState, useRef } from 'react';
 
@@ -29,21 +29,21 @@ export const TextField = ({
 }: TextFieldProps) => {
   const [isFocused, setIsFocused] = useState(false);
   const clearButtonRef = useRef<HTMLButtonElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleClear = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log('=== CLEAR BUTTON CLICKED ===');
+
     onChange('');
     // После очистки возвращаем фокус на инпут
-    const input = document.getElementById(name);
-    if (input) {
-      input.focus();
+    if (inputRef.current) {
+      inputRef.current.focus();
     }
   };
 
-  const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-    console.log('=== INPUT FOCUS ===');
+  const handleFocus = () => {
+
     setIsFocused(true);
     if (onFocus) onFocus();
   };
@@ -52,18 +52,18 @@ export const TextField = ({
     // Проверяем, не перешел ли фокус на кнопку крестика
     const relatedTarget = e.relatedTarget as HTMLElement;
     if (clearButtonRef.current && clearButtonRef.current === relatedTarget) {
-      console.log('Focus moved to clear button, keeping input focused');
+
       return;
     }
     
-    console.log('=== INPUT BLUR ===');
+
     setIsFocused(false);
     if (onBlur) onBlur();
   };
 
   // Крестик показывается ТОЛЬКО когда есть значение И инпут в фокусе
   const showClearButton = isFocused && value && value.length > 0;
-  console.log('Show clear button:', showClearButton, { isFocused, valueLength: value?.length });
+
 
   const showError = error && !isFocused;
   const textColor = value && value.length > 0 ? '#161616' : '#595959';
@@ -76,6 +76,7 @@ export const TextField = ({
       
       <div className="text-field__input-wrapper">
         <input
+          ref={inputRef}
           id={name}
           name={name}
           type={type}
@@ -97,22 +98,6 @@ export const TextField = ({
             onMouseDown={(e) => {
               // Предотвращаем потерю фокуса инпутом при клике на кнопку
               e.preventDefault();
-            }}
-            style={{ 
-              position: 'absolute',
-              right: '9px',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              padding: 0,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '24px',
-              height: '24px',
-              zIndex: 10
             }}
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -5,7 +5,7 @@ interface UserMenuIconProps {
   state?: 'default' | 'hover' | 'active';
 }
 
-export const UserMenuIcon = ({ color = '#161616', type = 'desktop', state = 'default' }: UserMenuIconProps) => {
+export const UserMenuIcon = ({ type = 'desktop', state = 'default' }: UserMenuIconProps) => {
   // Для десктопа
   if (type === 'desktop') {
     let fillColor = '#161616';
