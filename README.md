@@ -10,7 +10,7 @@
 
 ##  Демо
 
-[Ссылка на деплой](#) https://at-work-test-nu.vercel.app/
+https://at-work-test-nu.vercel.app/
 
 ##  Функционал
 
