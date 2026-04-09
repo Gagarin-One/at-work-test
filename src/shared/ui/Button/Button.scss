@@ -1,0 +1,125 @@
+
+
+// ===== ПЕРЕМЕННЫЕ =====
+$button-gap: 12px;
+$button-transition: all 0.2s ease;
+$button-border-radius: 50px;
+
+// Desktop версия
+$button-desktop-padding: 12px 42px;
+$button-desktop-width: 170px;
+$button-desktop-height: 46px;
+$button-desktop-text-width: 86px;
+$button-desktop-text-height: 22px;
+$button-desktop-font-size: 16px;
+$button-desktop-line-height: 22px;
+
+// Mobile версия
+$button-mobile-padding: 12px 42px;
+$button-mobile-height: 44px;
+$button-mobile-font-size: 14px;
+$button-mobile-line-height: 19px;
+
+// Состояния
+$button-default-bg: var(--x-01);
+$button-default-text: var(--x-06);
+$button-default-hover-bg: var(--x-05);
+$button-default-hover-text: var(--x-02);
+$button-hover-bg: var(--x-05);
+$button-hover-text: var(--x-02);
+$button-disabled-opacity: 0.5;
+
+// ===== МИКСИНЫ =====
+@mixin button-text($font-size, $line-height) {
+  font-weight: 600;
+  font-size: $font-size;
+  line-height: $line-height;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// ===== ОСНОВНЫЕ СТИЛИ =====
+.button {
+  @include flex-center;
+  gap: $button-gap;
+  border: none;
+  cursor: pointer;
+  transition: $button-transition;
+  font-family: 'Manrope', sans-serif;
+
+  // Desktop версия
+  &--desktop {
+    padding: $button-desktop-padding;
+    width: $button-desktop-width;
+    height: $button-desktop-height;
+    border-radius: $button-border-radius;
+
+    .button__text {
+      @include button-text($button-desktop-font-size, $button-desktop-line-height);
+      width: $button-desktop-text-width;
+      height: $button-desktop-text-height;
+    }
+  }
+
+  // Mobile версия
+  &--mobile {
+    padding: $button-mobile-padding;
+    width: 100%;
+    height: $button-mobile-height;
+    border-radius: $button-border-radius;
+
+    .button__text {
+      @include button-text($button-mobile-font-size, $button-mobile-line-height);
+    }
+  }
+
+  // Default состояние
+  &--default {
+    background: $button-default-bg;
+
+    .button__text {
+      color: $button-default-text;
+    }
+
+    &:hover {
+      background: $button-default-hover-bg;
+
+      .button__text {
+        color: $button-default-hover-text;
+      }
+    }
+  }
+
+  // Hover состояние (принудительное, без наведения)
+  &--hover {
+    background: $button-hover-bg;
+
+    .button__text {
+      color: $button-hover-text;
+    }
+  }
+
+  // Disabled состояние
+  &:disabled {
+    opacity: $button-disabled-opacity;
+    cursor: not-allowed;
+  }
+}
+
+// ===== МЕДИА-ЗАПРОСЫ =====
+@media (max-width: 768px) {
+  .button {
+    &--desktop {
+      width: 100%;
+      max-width: none;
+    }
+  }
+}

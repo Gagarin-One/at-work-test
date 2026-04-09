@@ -1,0 +1,39 @@
+// src/shared/ui/UserAvatar/UserAvatar.scss
+.user-avatar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &__image {
+    width: 20px;
+    height: 20px;
+    border-radius: 50px;
+    background-image: url('https://i.pravatar.cc/20');
+    background-size: cover;
+    background-position: 50% 50%;
+  }
+
+  &__name {
+    font-family: 'Manrope', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: normal;
+    color: var(--x-02);
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .user-avatar {
+    &__name {
+      display: none;
+    }
+
+    &__image {
+      width: 28px;
+      height: 28px;
+    }
+  }
+}

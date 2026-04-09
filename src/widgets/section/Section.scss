@@ -1,0 +1,46 @@
+
+.section {
+  margin-bottom: 60px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &__header {
+    margin-bottom: 28px;
+  }
+
+  &__title {
+    font-family: 'Manrope', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: normal;
+    color: var(--x-01);
+    margin-bottom: 16px;
+
+    &--archived {
+      color: var(--x-02);
+    }
+  }
+
+  &__divider {
+    height: 1px;
+    background-color: var(--x-04);
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    margin-bottom: 40px;
+
+    &__header {
+      margin-bottom: 16px;
+    }
+
+    &__title {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+  }
+}

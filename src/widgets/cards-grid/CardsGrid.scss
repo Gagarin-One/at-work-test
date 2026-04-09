@@ -1,0 +1,37 @@
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 360px);
+  gap: 24px;
+  justify-content: center;
+
+  &__empty {
+    text-align: center;
+    padding: 60px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 18px;
+    color: var(--x-03);
+  }
+}
+
+@media (max-width: 1200px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 360px);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 162px);
+    gap: 16px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 374px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+}

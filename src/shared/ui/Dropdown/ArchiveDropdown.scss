@@ -1,0 +1,152 @@
+
+// ===== ПЕРЕМЕННЫЕ =====
+$dropdown-transition: opacity 0.2s ease;
+$dropdown-menu-margin-top: 8px;
+$dropdown-menu-border-radius: 12px;
+$dropdown-item-gap: 8px;
+$dropdown-item-padding: 8px 12px;
+$dropdown-item-border-radius: 8px;
+
+// Размеры (десктоп)
+$dropdown-desktop-width: 200px;
+$dropdown-desktop-padding: 8px;
+$dropdown-desktop-font-size: 16px;
+$dropdown-desktop-line-height: 22px;
+
+// Размеры (мобилка)
+$dropdown-mobile-width: 160px;
+$dropdown-mobile-padding: 8px;
+$dropdown-mobile-font-size: 14px;
+$dropdown-mobile-line-height: 19px;
+
+// Цвета
+$dropdown-menu-bg: var(--x-06);
+$dropdown-item-text-default: var(--x-01);
+$dropdown-item-text-hover: var(--accent);
+$dropdown-trigger-hover-opacity: 0.8;
+
+// Z-index
+$overlay-z-index: 999;
+$menu-z-index: 1000;
+
+// ===== МИКСИНЫ =====
+@mixin manrope-font($weight, $size, $line-height, $color) {
+  font-family: 'Manrope', sans-serif;
+  font-style: normal;
+  font-weight: $weight;
+  font-size: $size;
+  line-height: $line-height;
+  color: $color;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin position-absolute-full {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+// ===== ОСНОВНЫЕ СТИЛИ =====
+.archive-dropdown {
+  position: relative;
+  display: inline-block;
+
+  // Триггер (кнопка с тремя точками)
+  &__trigger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    @include flex-center;
+    transition: $dropdown-transition;
+
+    &:hover {
+      background: none;
+      opacity: $dropdown-trigger-hover-opacity;
+    }
+  }
+
+  // Оверлей для закрытия по клику вне
+  &__overlay {
+    position: fixed;
+    @include position-absolute-full;
+    z-index: $overlay-z-index;
+    background: transparent;
+  }
+
+  // Выпадающее меню
+  &__menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: $dropdown-menu-margin-top;
+    background: $dropdown-menu-bg;
+    border-radius: $dropdown-menu-border-radius;
+    z-index: $menu-z-index;
+
+    // Десктопная версия
+    &--desktop {
+      width: $dropdown-desktop-width;
+      padding: $dropdown-desktop-padding;
+    }
+
+    // Мобильная версия
+    &--mobile {
+      width: $dropdown-mobile-width;
+      padding: $dropdown-mobile-padding;
+    }
+  }
+
+  // Пункт меню
+  &__item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: $dropdown-item-padding;
+    gap: $dropdown-item-gap;
+    width: 100%;
+    background: none;
+    border: none;
+    border-radius: $dropdown-item-border-radius;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    text-align: left;
+
+    &:hover {
+      background: none;
+
+      .archive-dropdown__item-text {
+        color: $dropdown-item-text-hover;
+      }
+    }
+  }
+
+  // Текст пункта меню
+  &__item-text {
+    @include manrope-font(500, $dropdown-desktop-font-size, $dropdown-desktop-line-height, $dropdown-item-text-default);
+    transition: color 0.2s ease;
+  }
+}
+
+// ===== МОБИЛЬНАЯ ВЕРСИЯ =====
+@media (max-width: 768px) {
+  .archive-dropdown {
+    &__menu {
+      &--desktop {
+        width: $dropdown-mobile-width;
+      }
+    }
+
+    &__item-text {
+      font-size: $dropdown-mobile-font-size;
+      line-height: $dropdown-mobile-line-height;
+    }
+  }
+}

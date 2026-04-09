@@ -1,0 +1,10 @@
+// src/pages/main-page/MainPage.scss
+.main-page {
+  padding: 40px 0;
+}
+
+@media (max-width: 768px) {
+  .main-page {
+    padding: 32px 0;
+  }
+}

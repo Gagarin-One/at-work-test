@@ -1,0 +1,27 @@
+
+.error-message {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 32px;
+  background-color: #fff3e0;
+  border-left: 6px solid #ff9800;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  text-align: left;
+
+  p {
+    margin-bottom: 16px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+  }
+
+  code {
+    background-color: #f0f0f0;
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-family: monospace;
+    font-size: 14px;
+    word-break: break-all;
+  }
+}

@@ -1,0 +1,231 @@
+
+
+// ===== ПЕРЕМЕННЫЕ =====
+$text-field-gap: 8px;
+$text-field-error-margin-top: 4px;
+$text-field-border-width: 2px;
+$text-field-border-radius: 50px;
+$text-field-clear-right: 9px;
+$text-field-clear-size: 24px;
+
+// Desktop версия
+$text-field-desktop-max-width: 420px;
+$text-field-desktop-label-size: 18px;
+$text-field-desktop-label-height: 25px;
+$text-field-desktop-input-height: 42px;
+$text-field-desktop-input-padding: 0 32px 0 16px;
+$text-field-desktop-font-size: 16px;
+$text-field-desktop-line-height: 22px;
+$text-field-desktop-error-size: 14px;
+$text-field-desktop-error-height: 19px;
+
+// Mobile версия
+$text-field-mobile-label-size: 16px;
+$text-field-mobile-label-height: 23px;
+$text-field-mobile-input-height: 40px;
+$text-field-mobile-input-padding: 0 32px 0 14px;
+$text-field-mobile-font-size: 14px;
+$text-field-mobile-line-height: 20px;
+$text-field-mobile-error-size: 12px;
+$text-field-mobile-error-height: 17px;
+
+// Цвета
+$text-field-label-color: var(--x-01);
+$text-field-border-color: var(--x-04);
+$text-field-placeholder-color: var(--x-04);
+$text-field-text-color-default: var(--x-02);
+$text-field-text-color-filled: var(--x-01);
+$text-field-clear-color: var(--x-02);
+$text-field-error-color: #e74c3c;
+
+// ===== МИКСИНЫ =====
+@mixin manrope-font($weight, $size, $line-height, $color) {
+  font-family: 'Manrope', sans-serif;
+  font-style: normal;
+  font-weight: $weight;
+  font-size: $size;
+  line-height: $line-height;
+  color: $color;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin text-field-input-styles($height, $padding, $font-size, $line-height) {
+  width: 100%;
+  height: $height;
+  padding: $padding;
+  border: $text-field-border-width solid $text-field-border-color;
+  border-radius: $text-field-border-radius;
+  background-color: transparent;
+  transition: none;
+  box-sizing: border-box;
+  @include manrope-font(500, $font-size, $line-height, $text-field-text-color-default);
+
+  &::placeholder {
+    color: $text-field-placeholder-color;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $text-field-border-color;
+  }
+
+  &:hover {
+    border-color: $text-field-border-color;
+  }
+}
+
+@mixin text-field-clear-styles {
+  position: absolute;
+  right: $text-field-clear-right;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  @include flex-center;
+  width: $text-field-clear-size;
+  height: $text-field-clear-size;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  svg {
+    width: $text-field-clear-size;
+    height: $text-field-clear-size;
+    display: block;
+  }
+}
+
+// ===== ОСНОВНЫЕ СТИЛИ =====
+.text-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  gap: $text-field-gap;
+  width: 100%;
+
+  // Desktop версия
+  &--desktop {
+    max-width: $text-field-desktop-max-width;
+
+    .text-field__label {
+      @include manrope-font(600, $text-field-desktop-label-size, $text-field-desktop-label-height, $text-field-label-color);
+      text-align: left;
+      width: 100%;
+    }
+
+    .text-field__input-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .text-field__input {
+      @include text-field-input-styles(
+        $text-field-desktop-input-height,
+        $text-field-desktop-input-padding,
+        $text-field-desktop-font-size,
+        $text-field-desktop-line-height
+      );
+    }
+
+    .text-field__clear {
+      @include text-field-clear-styles;
+    }
+
+    .text-field__error {
+      @include manrope-font(500, $text-field-desktop-error-size, $text-field-desktop-error-height, $text-field-error-color);
+      margin-top: $text-field-error-margin-top;
+    }
+  }
+
+  // Mobile версия
+  &--mobile {
+    width: 100%;
+
+    .text-field__label {
+      @include manrope-font(600, $text-field-mobile-label-size, $text-field-mobile-label-height, $text-field-label-color);
+      text-align: left;
+      width: 100%;
+    }
+
+    .text-field__input-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .text-field__input {
+      @include text-field-input-styles(
+        $text-field-mobile-input-height,
+        $text-field-mobile-input-padding,
+        $text-field-mobile-font-size,
+        $text-field-mobile-line-height
+      );
+    }
+
+    .text-field__clear {
+      @include text-field-clear-styles;
+    }
+
+    .text-field__error {
+      @include manrope-font(500, $text-field-mobile-error-size, $text-field-mobile-error-height, $text-field-error-color);
+      margin-top: $text-field-error-margin-top;
+    }
+  }
+
+  // Состояние ошибки
+  &--error {
+    .text-field__input {
+      border-color: $text-field-error-color;
+    }
+  }
+
+  &__input-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  &__error {
+    display: block;
+  }
+}
+
+// ===== МЕДИА-ЗАПРОСЫ ДЛЯ ПЛАНШЕТОВ =====
+@media (max-width: 1024px) {
+  .text-field {
+    &--desktop {
+      max-width: 100%;
+    }
+  }
+}
+
+// ===== МЕДИА-ЗАПРОСЫ ДЛЯ МОБИЛЬНЫХ =====
+@media (max-width: 768px) {
+  .text-field {
+    &--desktop {
+      .text-field__label {
+        font-size: $text-field-mobile-label-size;
+        line-height: $text-field-mobile-label-height;
+      }
+
+      .text-field__input {
+        height: $text-field-mobile-input-height;
+        padding: $text-field-mobile-input-padding;
+        font-size: $text-field-mobile-font-size;
+        line-height: $text-field-mobile-line-height;
+      }
+
+      .text-field__error {
+        font-size: $text-field-mobile-error-size;
+        line-height: $text-field-mobile-error-height;
+      }
+    }
+  }
+}

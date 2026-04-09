@@ -1,0 +1,47 @@
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+  }
+
+  &__text {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  &__at {
+    font-family: 'Inter', 'Manrope', sans-serif;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 19.5px;
+    color: #333153;
+    letter-spacing: 0;
+  }
+
+  &__work {
+    font-family: 'Inter', 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 19.5px;
+    color: #333153;
+    letter-spacing: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo {
+    &__at,
+    &__work {
+      font-size: 20px;
+      line-height: 16px;
+    }
+  }
+}
